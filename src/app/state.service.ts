@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from "@ionic/storage";
-import { Observable, from, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, ReplaySubject } from 'rxjs';
+import { Schedule } from './schedule';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class StateService {
   preferences = new BehaviorSubject<object>({
     twentyfour: true
   });
+  currentSchedule = new ReplaySubject<Schedule>(1);
 
   constructor(
     private db: Storage
@@ -35,5 +37,13 @@ export class StateService {
     let prefObject = this.preferences.getValue();
     prefObject[key] = value;
     this.db.set(this.PREFERENCES_KEY, prefObject).then(() => this.preferences.next(prefObject));
+  }
+
+  getCurrentSchedule(): Observable<Schedule> {
+    return this.currentSchedule.asObservable();
+  }
+
+  setCurrentSchedule(sched: Schedule): void {
+    this.currentSchedule.next(sched);
   }
 }

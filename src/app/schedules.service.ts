@@ -5,6 +5,7 @@ import { SchoolYear } from './school-year';
 import { Observable } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
 import { PeriodStatus } from './period-status';
+import { StateService } from './state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,10 @@ import { PeriodStatus } from './period-status';
 export class SchedulesService {
   SCHEDULES_API = "https://schedules-data.lasa2019.com";
   
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private state: StateService
+  ) { }
   
   getSchedules(): Observable<Schedule[]> {
     return this.http.get<Schedule[]>(this.SCHEDULES_API + "/schedule.json");
@@ -142,6 +146,7 @@ export class SchedulesService {
     let timeLeft: string;
     // run determineSchedule which activates the proper schedule
     let scheduleStatus = this.determineSchedule(now, holidays, schedules);
+    this.state.setCurrentSchedule(schedules[scheduleStatus.currentSchedule]);
     // check if there is no school today
     if(scheduleStatus.currentSchedule == null) {
       return {

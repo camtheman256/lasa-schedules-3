@@ -1,9 +1,24 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="lasa">
     <ion-title>All Schedules</ion-title>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="allSchedules" color="lasa">
+    <ion-segment [(ngModel)]="schedPicker">
+      <ion-segment-button *ngFor="let schedule of allSchedules" value="{{ schedule.name }}">
+        {{ schedule.name }}
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div [ngSwitch]="schedPicker" *ngFor="let schedule of allSchedules">
+    <ion-list *ngSwitchCase="schedule['name']">
+      <ion-item *ngFor="let period of schedule['schedule']">
+        <ion-label>{{ period.name }}</ion-label>
+        <ion-note slot="end">{{ period.startTime | timeFormat: preferences ? preferences["twentyfour"] : true }} - {{ period.endTime | timeFormat: preferences ? preferences["twentyfour"] : true }}</ion-note>
+        <ion-note slot="end">{{ period.runTime }} min</ion-note>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
