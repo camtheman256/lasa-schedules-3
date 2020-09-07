@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="lasa">
+    <ion-title>Current Schedule</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card (click)="toggleTimeFormat($event)">
+    
+    <ion-card-header>
+      Current Time
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-card-title>{{ currentTime | timeFormat: preferences ? preferences["twentyfour"] : true }}</ion-card-title>
+    </ion-card-content>
+    
+  </ion-card>
+  
+  <ion-card color="lasa">
+    
+    <ion-card-header>
+      Current Period
+    </ion-card-header>
+    
+    <ion-card-content *ngIf="currentStatus; else loading">
+      <ion-card-title class="period">{{ currentStatus.currentPeriod }}</ion-card-title>
+      <h2 class="endTime" *ngIf="currentStatus.periodEndTime">
+        Ends at {{ currentStatus.periodEndTime }}
+      </h2>
+      <p *ngIf="currentStatus.timeRemaining">
+        Time remaining: {{ currentStatus.periodEndTime }}
+      </p>
+    </ion-card-content>
+    
+    <ng-template #loading>
+      <ion-card-content>
+        <ion-card-title>Loading...</ion-card-title>
+      </ion-card-content>
+    </ng-template>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-icon name="information-circle"></ion-icon>&ensp;LASA Schedules Web App
+    </ion-card-header>
+    <ion-card-content>
+      You can add this website to your home screen to use it as a standalone app. Also, tap the time to toggle between 12 and 24 hours.
+    </ion-card-content>
+  </ion-card>
+</ion-content>

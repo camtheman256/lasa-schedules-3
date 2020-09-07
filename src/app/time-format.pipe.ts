@@ -1,11 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { StateService } from "./state.service";
 
 @Pipe({
   name: 'timeFormat'
 })
 export class TimeFormatPipe implements PipeTransform {
-  constructor(private state: StateService) {}
 
   transform(value: string, twentyfour: boolean): unknown {
     let out: string = "";

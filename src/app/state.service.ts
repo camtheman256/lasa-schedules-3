@@ -6,6 +6,7 @@ import { Observable, from, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class StateService {
+  PREFERENCES_KEY = "app-preferences"
   preferences = new BehaviorSubject<object>({
     twentyfour: true
   });
@@ -13,15 +14,26 @@ export class StateService {
   constructor(
     private db: Storage
   ) {
-    db.get("app-preferences").then(pref => this.preferences.next(pref));
+    db.get(this.PREFERENCES_KEY).then(pref => {
+      if(pref) {
+        this.preferences.next(pref);
+      } else {
+        db.set(this.PREFERENCES_KEY, this.preferences.getValue());
+      }
+    });
   }
 
   getPreferences(): Observable<object> {
     return this.preferences.asObservable();
   }
 
-  setPreferences(next: object): any{
-    this.preferences.next(next);
-    this.db.set("app-preferences", this.preferences);
+  setPreferences(next: object): void {
+    this.db.set(this.PREFERENCES_KEY, this.preferences).then(() => this.preferences.next(next));
+  }
+
+  setPreference(key: string, value: any): void {
+    let prefObject = this.preferences.getValue();
+    prefObject[key] = value;
+    this.db.set(this.PREFERENCES_KEY, prefObject).then(() => this.preferences.next(prefObject));
   }
 }

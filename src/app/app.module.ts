@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 import { TimeFormatPipe } from './time-format.pipe';
 
 @NgModule({
-  declarations: [AppComponent, TimeFormatPipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule, IonicModule.forRoot(), AppRoutingModule,
