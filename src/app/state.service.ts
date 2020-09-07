@@ -9,7 +9,7 @@ import { Schedule } from './schedule';
 export class StateService {
   PREFERENCES_KEY = "app-preferences"
   preferences = new BehaviorSubject<object>({
-    twentyfour: true,
+    twentyfour: false,
     bells: false
   });
   currentSchedule = new ReplaySubject<Schedule>(1);
