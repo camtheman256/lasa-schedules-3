@@ -16,6 +16,8 @@ export class CurrentSchedulePage implements OnInit {
   preferences: object;
   currentTime: string;
   currentStatus: PeriodStatus;
+  bells: boolean = false;
+  bell_sound = new Audio("assets/solemn.mp3");
 
   constructor(
     private sched: SchedulesService,
@@ -25,13 +27,20 @@ export class CurrentSchedulePage implements OnInit {
   ngOnInit() {
     this.sched.getSchedules().subscribe(sched => this.schedules = sched);
     this.sched.getSchoolYear().subscribe(sy => this.schoolYear = sy);
-    this.state.getPreferences().subscribe(pref => this.preferences = pref);
+    this.state.getPreferences().subscribe(pref => {
+      this.preferences = pref;
+      this.bells = pref["bells"];
+    });
 
     setInterval(() => {
       let now = new Date();
       this.currentTime = now.toLocaleTimeString([], {hour12: false});
       if(this.schedules && this.schoolYear) {
-        this.currentStatus = this.sched.periodCheck(now, this.schoolYear, this.schedules);
+        let newStatus = this.sched.periodCheck(now, this.schoolYear, this.schedules);
+        if(this.currentStatus && this.bells && newStatus.currentPeriod !== this.currentStatus.currentPeriod) {
+          this.bell_sound.play();
+        }
+        this.currentStatus = newStatus;
       }
     }, 500);
   }
@@ -39,6 +48,12 @@ export class CurrentSchedulePage implements OnInit {
   toggleTimeFormat(e: Event) {
     if(this.preferences) {
       this.state.setPreference("twentyfour", !this.preferences["twentyfour"]);
+    }
+  }
+
+  toggleBells(e: Event) {
+    if(this.preferences) {
+      this.state.setPreference("bells", this.bells);
     }
   }
 
