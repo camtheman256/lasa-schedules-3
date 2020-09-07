@@ -51,7 +51,7 @@
       </ion-item>
       <ion-item [hidden]="!bells">
         <ion-label text-wrap>If bells aren't working, press the play button once to start.</ion-label>
-        <ion-button (click)="playBell()" slot="start" fill="clear" color="lasa" size="default">
+        <ion-button (click)="playBell($event)" slot="start" fill="clear" color="lasa" size="default">
           <ion-icon name="play"></ion-icon>
         </ion-button>
       </ion-item>
