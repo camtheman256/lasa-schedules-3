@@ -7,8 +7,7 @@ import { StateService } from "./state.service";
 export class TimeFormatPipe implements PipeTransform {
   constructor(private state: StateService) {}
 
-  transform(value: string): unknown {
-    let twentyfour = this.state.getPreference("twentyfour");
+  transform(value: string, twentyfour: boolean): unknown {
     let out: string = "";
     if (!twentyfour && value) {
       let colon: number = value.indexOf(":");

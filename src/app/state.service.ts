@@ -1,29 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Storage } from "@ionic/storage";
-import { Observable, from } from 'rxjs';
+import { Observable, from, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
-  preferences = {
+  preferences = new BehaviorSubject<object>({
     twentyfour: true
-  };
+  });
 
   constructor(
     private db: Storage
   ) {
-    db.get("app-preferences").then(pref => this.preferences = pref);
+    db.get("app-preferences").then(pref => this.preferences.next(pref));
   }
 
-  getPreference(key: string): any {
-    if(key in this.preferences) {
-      return this.preferences[key];
-    }
+  getPreferences(): Observable<object> {
+    return this.preferences.asObservable();
   }
 
-  setPreference(key: string, value: any): any{
-    this.preferences[key] = value;
+  setPreferences(next: object): any{
+    this.preferences.next(next);
     this.db.set("app-preferences", this.preferences);
   }
 }
