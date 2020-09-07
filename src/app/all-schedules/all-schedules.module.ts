@@ -7,15 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { AllSchedulesPageRoutingModule } from './all-schedules-routing.module';
 
 import { AllSchedulesPage } from './all-schedules.page';
-import { TimeFormatPipe } from '../time-format.pipe';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AllSchedulesPageRoutingModule
+    AllSchedulesPageRoutingModule,
+    PipesModule
   ],
-  declarations: [AllSchedulesPage, TimeFormatPipe]
+  declarations: [AllSchedulesPage]
 })
 export class AllSchedulesPageModule {}

@@ -10,7 +10,6 @@ import { IonicStorageModule } from "@ionic/storage";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TimeFormatPipe } from './time-format.pipe';
 
 @NgModule({
   declarations: [AppComponent],
