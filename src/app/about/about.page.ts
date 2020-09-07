@@ -15,4 +15,8 @@ export class AboutPage implements OnInit {
   ngOnInit() {
   }
 
+  dismissModal() {
+    this.me.dismiss();
+  }
+
 }
