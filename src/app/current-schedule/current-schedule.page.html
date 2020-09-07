@@ -8,30 +8,29 @@
   <ion-card (click)="toggleTimeFormat($event)">
     
     <ion-card-header>
-      Current Time
-    </ion-card-header>
-    
-    <ion-card-content>
+      <ion-card-subtitle>Current Time</ion-card-subtitle>
       <ion-card-title>{{ currentTime | timeFormat: preferences ? preferences["twentyfour"] : true }}</ion-card-title>
-    </ion-card-content>
+    </ion-card-header>
     
   </ion-card>
   
   <ion-card color="lasa">
     
+    <div *ngIf="currentStatus; else loading">
     <ion-card-header>
-      Current Period
+      <ion-card-subtitle>Current Period</ion-card-subtitle>
+      <ion-card-title>{{ currentStatus.currentPeriod }}</ion-card-title>
     </ion-card-header>
     
-    <ion-card-content *ngIf="currentStatus; else loading">
-      <ion-card-title class="period">{{ currentStatus.currentPeriod }}</ion-card-title>
-      <h2 class="endTime" *ngIf="currentStatus.periodEndTime">
+    <ion-card-content>
+      <h2 *ngIf="currentStatus.periodEndTime">
         Ends at {{ currentStatus.periodEndTime }}
       </h2>
       <p *ngIf="currentStatus.timeRemaining">
         Time remaining: {{ currentStatus.timeRemaining }}
       </p>
     </ion-card-content>
+    </div>
     
     <ng-template #loading>
       <ion-card-content>
