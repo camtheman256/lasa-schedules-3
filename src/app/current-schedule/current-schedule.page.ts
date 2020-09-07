@@ -4,6 +4,8 @@ import { Schedule } from '../schedule';
 import { SchoolYear } from '../school-year';
 import { StateService } from '../state.service';
 import { PeriodStatus } from '../period-status';
+import { ModalController } from '@ionic/angular';
+import { AboutPage } from '../about/about.page';
 
 @Component({
   selector: 'app-current-schedule',
@@ -21,7 +23,8 @@ export class CurrentSchedulePage implements OnInit {
 
   constructor(
     private sched: SchedulesService,
-    private state: StateService
+    private state: StateService,
+    private modal: ModalController,
   ) { }
 
   ngOnInit() {
@@ -55,6 +58,17 @@ export class CurrentSchedulePage implements OnInit {
     if(this.preferences) {
       this.state.setPreference("bells", this.bells);
     }
+  }
+
+  async presentAboutPage() {
+    const modal = await this.modal.create({
+      component: AboutPage
+    });
+    return await modal.present();
+  }
+
+  playBell(e: Event) {
+    this.bell_sound.play();
   }
 
 }

@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar color="lasa">
     <ion-title>Current Schedule</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentAboutPage()">
+        <ion-icon slot="icon-only" name="information-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -17,19 +22,19 @@
   <ion-card color="lasa">
     
     <div *ngIf="currentStatus; else loading">
-    <ion-card-header>
-      <ion-card-subtitle>Current Period</ion-card-subtitle>
-      <ion-card-title>{{ currentStatus.currentPeriod }}</ion-card-title>
-    </ion-card-header>
-    
-    <ion-card-content>
-      <h2 *ngIf="currentStatus.periodEndTime">
-        Ends at {{ currentStatus.periodEndTime }}
-      </h2>
-      <p *ngIf="currentStatus.timeRemaining">
-        Time remaining: {{ currentStatus.timeRemaining }}
-      </p>
-    </ion-card-content>
+      <ion-card-header>
+        <ion-card-subtitle>Current Period</ion-card-subtitle>
+        <ion-card-title>{{ currentStatus.currentPeriod }}</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <h2 *ngIf="currentStatus.periodEndTime">
+          Ends at {{ currentStatus.periodEndTime }}
+        </h2>
+        <p *ngIf="currentStatus.timeRemaining">
+          Time remaining: {{ currentStatus.timeRemaining }}
+        </p>
+      </ion-card-content>
     </div>
     
     <ng-template #loading>
@@ -38,20 +43,26 @@
       </ion-card-content>
     </ng-template>
   </ion-card>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-label>Install this app by adding it to your home screen.</ion-label>
-          <ion-icon name="share-outline" slot="start"></ion-icon>
-        </ion-item>
-        <ion-item>
-          <ion-label>Tap the time to change between 12-hour and 24-hour time.</ion-label>
-          <ion-icon name="cog-outline" slot="start"></ion-icon>
-        </ion-item>
-        <ion-item>
-          <ion-label>Enable virtual bells (requires app open)</ion-label>
-          <ion-toggle slot="start" color="lasa" [(ngModel)]="bells" (ngModelChange)="toggleBells($event)"></ion-toggle>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
+  <ion-card-content>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-label text-wrap>Use virtual bells (requires app open)</ion-label>
+        <ion-toggle slot="start" color="lasa" [(ngModel)]="bells" (ngModelChange)="toggleBells($event)"></ion-toggle>
+      </ion-item>
+      <ion-item [hidden]="!bells">
+        <ion-label text-wrap>If bells aren't working, press the play button once to start.</ion-label>
+        <ion-button (click)="playBell()" slot="start" fill="clear" color="lasa" size="default">
+          <ion-icon name="play"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap>Install this app by adding it to your home screen.</ion-label>
+        <ion-icon name="share-outline" slot="start"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label text-wrap>Tap the time to change between 12-hour and 24-hour time.</ion-label>
+        <ion-icon name="cog-outline" slot="start"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
 </ion-content>

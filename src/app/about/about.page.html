@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>About LASA Schedules</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="me.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">About</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <img src="assets/lasa-banner.png">
+    <ion-card-header>
+      <ion-card-title>LASA Schedules <ion-badge color="lasa" style="vertical-align: middle;">v3</ion-badge></ion-card-title>
+      <ion-card-subtitle>by Cameron Kleiman for LASA 2019</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>If you have feedback, please email <a href="mailto:ckleiman15@gmail.com?subject=LASA%20Schedules%20App%20Feedback">ckleiman15@gmail.com</a>.</p>
+      <ion-list>
+        <ion-list-header>Links</ion-list-header>
+        <ion-item href="https://github.com/camtheman256/lasa-schedules-3" target="_blank">
+          <ion-label>LASA Schedules 3</ion-label>
+          <ion-icon name="logo-github" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item href="https://github.com/camtheman256/lasa-schedules-data" target="_blank">
+          <ion-label>LASA Schedule Data API</ion-label>
+          <ion-icon name="logo-github" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item href="https://camk.co" target="_blank">
+          <ion-label>Cameron Kleiman</ion-label>
+          <ion-icon name="person" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item href="https://lasa2019.com" target="_blank">
+          <ion-label>LASA 2019</ion-label>
+          <ion-icon name="school" slot="start"></ion-icon>
+        </ion-item>
+      </ion-list>
+      <p style="margin-top: 1rem">
+        The bell sound used, unaltered, is copyright notificationsounds.com and licensed under <a href="https://creativecommons.org/licenses/by/4.0/legalcode" target="_blank">CC BY 4.0</a>.
+        It can be found at <a href="https://notificationsounds.com/wake-up-tones/solemn-522">this link</a>.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
