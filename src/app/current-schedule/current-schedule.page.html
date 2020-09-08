@@ -14,7 +14,7 @@
     
     <ion-card-header>
       <ion-card-subtitle>Current Time</ion-card-subtitle>
-      <ion-card-title>{{ currentTime | timeFormat: preferences ? preferences["twentyfour"] : true }}</ion-card-title>
+      <ion-card-title>{{ currentTime | timeFormat: preferences ? preferences["twentyfour"] : false }}</ion-card-title>
     </ion-card-header>
     
   </ion-card>
@@ -29,7 +29,7 @@
       
       <ion-card-content>
         <h2 *ngIf="currentStatus.periodEndTime">
-          Ends at {{ currentStatus.periodEndTime }}
+          Ends at {{ currentStatus.periodEndTime | timeFormat: preferences ? preferences["twentyfour"] : false }}
         </h2>
         <p *ngIf="currentStatus.timeRemaining">
           Time remaining: {{ currentStatus.timeRemaining }}

@@ -16,7 +16,7 @@
     <ion-list *ngSwitchCase="schedule['name']">
       <ion-item *ngFor="let period of schedule['schedule']">
         <ion-label>{{ period.name }}</ion-label>
-        <ion-note slot="end">{{ period.startTime | timeFormat: preferences ? preferences["twentyfour"] : true }} - {{ period.endTime | timeFormat: preferences ? preferences["twentyfour"] : true }}</ion-note>
+        <ion-note slot="end">{{ period.startTime | timeFormat: preferences ? preferences["twentyfour"] : false }} - {{ period.endTime | timeFormat: preferences ? preferences["twentyfour"] : false }}</ion-note>
         <ion-note slot="end">{{ period.runTime }} min</ion-note>
       </ion-item>
     </ion-list>
