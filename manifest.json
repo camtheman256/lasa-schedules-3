@@ -1,0 +1,24 @@
+
+{
+ "name": "LASA Schedules",
+ "version": "3.0.0",
+ "homepage_url": "https://schedules.lasa2019.com",
+ "description": "A schedule-tracking app for students of LASA High School",
+ "icons": {
+  "16": "assets/icon/favicon-16x16.png",
+  "32": "assets/icon/favicon-32x32.png"
+ },
+ "manifest_version": 2,
+ "browser_action": {
+  "default_icon": {
+   "16": "assets/icon/favicon-16x16.png",
+   "32": "assets/icon/favicon-32x32.png"
+  },
+  "default_title": "LASA Schedules",
+  "default_popup": "index.html"
+ },
+ "permissions": [
+  "storage"
+ ],
+ "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

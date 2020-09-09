@@ -6,6 +6,7 @@
 .tmp
 *.tmp
 *.tmp.*
+ext-*.zip
 *.sublime-project
 *.sublime-workspace
 .DS_Store
@@ -29,3 +30,4 @@ npm-debug.log*
 /platforms
 /plugins
 /www
+/www-chrome
