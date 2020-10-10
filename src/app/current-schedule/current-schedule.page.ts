@@ -17,6 +17,7 @@ export class CurrentSchedulePage implements OnInit {
   schoolYear: SchoolYear;
   preferences: object;
   currentTime: string;
+  currentDate: string;
   currentStatus: PeriodStatus;
   bells: boolean = false;
   bell_sound = new Audio("assets/solemn.mp3");
@@ -37,7 +38,8 @@ export class CurrentSchedulePage implements OnInit {
 
     setInterval(() => {
       let now = new Date();
-      this.currentTime = now.toLocaleTimeString([], {hour12: false});
+      this.currentTime = now.toLocaleTimeString([], { hour12: false });
+      this.currentDate = now.toLocaleDateString([], { weekday: "long", month: "long", day: "numeric", year: "numeric" });
       if(this.schedules && this.schoolYear) {
         let newStatus = this.sched.periodCheck(now, this.schoolYear, this.schedules);
         if(this.currentStatus && this.bells && newStatus.currentPeriod !== this.currentStatus.currentPeriod) {
