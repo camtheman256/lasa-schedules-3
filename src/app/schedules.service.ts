@@ -71,7 +71,7 @@ export class SchedulesService {
         return currentStatus;
       };
       // Special day schedule checking
-      if("applyDay" in schedules[i] && day.getDay() == schedules[i]["applyDay"]) {
+      if("applyDay" in schedules[i] && schedules[i]["applyDay"].includes(day.getDay())) {
         currentStatus.currentSchedule = i;
         currentStatus.statusCode = 2;
         return currentStatus;
