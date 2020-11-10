@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="lasa">
-    <ion-title>Current Schedule</ion-title>
+    <ion-title>{{ currentSchedule ? currentSchedule.name + " Schedule" : "Current Schedule" }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="presentAboutPage()">
         <ion-icon slot="icon-only" name="information-circle"></ion-icon>

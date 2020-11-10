@@ -19,6 +19,7 @@ export class CurrentSchedulePage implements OnInit {
   currentTime: string;
   currentDate: string;
   currentStatus: PeriodStatus;
+  currentSchedule: Schedule;
   bells: boolean = false;
   bell_sound = new Audio("assets/solemn.mp3");
 
@@ -35,6 +36,7 @@ export class CurrentSchedulePage implements OnInit {
       this.preferences = pref;
       this.bells = pref["bells"];
     });
+    this.state.getCurrentSchedule().subscribe(sched => this.currentSchedule = sched);
 
     setInterval(() => {
       let now = new Date();
