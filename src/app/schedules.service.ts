@@ -6,12 +6,13 @@ import { Observable } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
 import { PeriodStatus } from './period-status';
 import { StateService } from './state.service';
+import { environment } from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchedulesService {
-  SCHEDULES_API = "https://schedules-data.lasa2019.com";
+  SCHEDULES_API = environment.schedulesAPI;
   
   constructor(
     private http: HttpClient,
