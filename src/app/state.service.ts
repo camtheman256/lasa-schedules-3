@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage } from "@ionic/storage";
+import { Storage } from "@ionic/storage-angular";
 import { Observable, BehaviorSubject, ReplaySubject } from 'rxjs';
 import { Schedule } from './schedule';
 
@@ -17,6 +17,7 @@ export class StateService {
   constructor(
     private db: Storage
   ) {
+    this.initStorage();
     db.get(this.PREFERENCES_KEY).then(pref => {
       if(pref) {
         this.preferences.next(pref);
@@ -24,6 +25,10 @@ export class StateService {
         db.set(this.PREFERENCES_KEY, this.preferences.getValue());
       }
     });
+  }
+
+  async initStorage() {
+    await this.db.create();
   }
 
   getPreferences(): Observable<object> {
