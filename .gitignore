@@ -20,6 +20,7 @@ npm-debug.log*
 
 /.idea
 /.ionic
+/.angular
 /.sass-cache
 /.sourcemaps
 /.versions
