@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: 🚀 Build and Deploy
-        uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.1
+        uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
-          angular_dist_build_folder: www
+          base_href: "/lasa-schedules-3"
